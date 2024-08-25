@@ -1,7 +1,30 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Header from './components/Header/Header';
+import Sidenav from './components/Sidenav/Sidenav';
+import { DataContextProvider } from './Context/DataContext';
+import Resumo from './Pages/Resumo';
+import Vendas from './Pages/Vendas';
 import './style.css';
+import Venda from './Pages/Venda';
 
 function App() {
-  return <div>oi</div>;
+  return (
+    <BrowserRouter>
+      <DataContextProvider>
+        <div className="container">
+          <Sidenav />
+          <main>
+            <Header />
+            <Routes>
+              <Route path="/" element={<Resumo />} />
+              <Route path="/vendas" element={<Vendas />} />
+              <Route path="/vendas/:id" element={<Venda />} />
+            </Routes>
+          </main>
+        </div>
+      </DataContextProvider>
+    </BrowserRouter>
+  );
 }
 
 export default App;
